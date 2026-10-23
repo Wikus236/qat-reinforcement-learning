@@ -1,0 +1,28 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{ESP32 reward and inference performance across model sizes. Repeated benchmark runs for the same model are combined.}
+\label{tab:esp-benchmark-all}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llrrrrrrrr}
+\toprule
+Size & Model & Episodes & Mean reward $\uparrow$ & Reward SD $\downarrow$ & Solve (\%) $\uparrow$ & Success (\%) $\uparrow$ & Failure (\%) $\downarrow$ & ESP inference (ms) $\downarrow$ & Round trip (ms) $\downarrow$ \\
+\midrule
+16x16 & FP32 & 10 & 215.98 & 34.32 & 80.00 & 90.00 & 0.00 & 0.048 & 11.814 \\
+16x16 & INT8 (W8) & 10 & 174.82 & 105.31 & 70.00 & 70.00 & 30.00 & 0.057 & 11.681 \\
+\midrule
+32x32 & FP32 & 10 & 250.24 & 15.79 & 100.00 & 100.00 & 0.00 & 0.133 & 11.885 \\
+32x32 & INT8 (W8) & 10 & 247.44 & 13.43 & 100.00 & 100.00 & 0.00 & 0.170 & 12.001 \\
+\midrule
+64x64 & FP32 & 10 & 267.53 & 16.99 & 100.00 & 100.00 & 0.00 & 0.610 & 12.500 \\
+64x64 & INT8 (W8) & 10 & 267.99 & 17.81 & 100.00 & 100.00 & 0.00 & 0.551 & 12.372 \\
+\midrule
+128x128 & FP32 & 10 & 279.53 & 11.28 & 100.00 & 100.00 & 0.00 & 4.117 & 16.287 \\
+128x128 & INT8 (W8) & 10 & 275.67 & 10.55 & 100.00 & 100.00 & 0.00 & 2.104 & 14.292 \\
+\midrule
+256x256 & FP32 & 10 & 288.15 & 12.16 & 100.00 & 100.00 & 0.00 & 15.515 & 27.822 \\
+256x256 & INT8 (W8) & 10 & 286.29 & 11.33 & 100.00 & 100.00 & 0.00 & 9.934 & 22.128 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

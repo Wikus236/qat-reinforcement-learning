@@ -1,0 +1,23 @@
+{
+  "model_type": "weight_qat_scratch",
+  "size": 32,
+  "seed": 1,
+  "total_steps": 2500000,
+  "block_size": 25000,
+  "from_scratch": true,
+  "completed": true,
+  "best_step": 1975000,
+  "best_mean_reward": 210.9041797212658,
+  "eval_seeds": [
+    42,
+    123,
+    456,
+    789,
+    111,
+    234,
+    23,
+    36,
+    964,
+    231
+  ]
+}

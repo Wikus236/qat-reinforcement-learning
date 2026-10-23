@@ -1,0 +1,24 @@
+% Requires: \usepackage{pdflscape,booktabs,adjustbox}
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\small
+\caption{Recorded Pendulum QAT training evaluations. Reward SD is across evaluation episodes. Capture requires at least one second of continuous balance; balanced time is the mean fraction of episode steps spent balanced. The highest logged mean reward is not necessarily the checkpoint selected for deployment. Base logging starts at 2,728,956 steps; earlier evaluations are unavailable. Mild uses a separate step counter.}
+\label{tab:pendulum-training-summary}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llrrrrrrr}
+\toprule
+Phase & Record & Steps & Mean reward $\uparrow$ & Reward SD & Capture (\%) $\uparrow$ & Balanced (\%) $\uparrow$ & Mean longest balance (s) $\uparrow$ & Rail failures (\%) $\downarrow$ \\
+\midrule
+Base & First recorded & 2,728,956 & 3.96 & 116.72 & 5.00 & 0.92 & 0.15 & 0.00 \\
+Base & Highest mean reward & 13,900,000 & \textbf{1681.69} & 303.39 & 100.00 & 80.83 & 16.12 & 0.00 \\
+Base & Final recorded & 52,728,956 & 844.92 & 973.86 & 50.00 & 44.01 & 8.77 & 0.00 \\
+\midrule
+Mild & First recorded & 0 & 1703.64 & 232.56 & 100.00 & 81.90 & 16.36 & 0.00 \\
+Mild & Highest mean reward & 275,000 & \textbf{1720.46} & 311.64 & 100.00 & 82.94 & 16.51 & 0.00 \\
+Mild & Final recorded & 1,000,000 & -10.69 & 75.29 & 5.00 & 1.20 & 0.19 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+\end{landscape}

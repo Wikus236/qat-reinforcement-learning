@@ -1,0 +1,22 @@
+% Requires: \usepackage{pdflscape}, \usepackage{booktabs}, \usepackage{adjustbox}, \usepackage{colortbl}
+% Define in the preamble: \newcommand{\best}[1]{\cellcolor{green!25}\textbf{#1}}
+% Define in the preamble: \newcommand{\secondbest}[1]{\cellcolor{blue!15}#1}
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\small
+\caption{Mean reward comparison for FP32 and weight-only 8-bit QAT trained from scratch for 2.5 million steps. Reward SD, best reward and worst reward describe policy mean rewards across training seeds. Green and blue indicate the best and second-best values within each model size, respectively.}
+\label{tab:scratch-mean-reward-comparison-largest}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llrrrrrrr}
+\toprule
+Size & Model & Mean reward $\uparrow$ & Reward SD $\downarrow$ & Best reward $\uparrow$ & Worst reward $\uparrow$ & Solve (\%) $\uparrow$ & Success (\%) $\uparrow$ & Failure (\%) $\downarrow$ \\
+\midrule
+256x256 & FP32 (Baseline) & \secondbest{270.37} & 10.22 & \best{280.11} & 256.33 & \secondbest{92.40} & \secondbest{92.40} & \best{2.40} \\
+256x256 & W8 QAT & \best{273.96} & \best{4.59} & 279.55 & \best{267.58} & \best{96.60} & \best{96.60} & \secondbest{3.00} \\
+256x256 & W8 exported & \best{273.96} & \secondbest{4.60} & \secondbest{279.57} & \secondbest{267.57} & \best{96.60} & \best{96.60} & \secondbest{3.00} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+\end{landscape}

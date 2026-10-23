@@ -1,0 +1,38 @@
+% Requires: \usepackage{pdflscape}, \usepackage{booktabs}, \usepackage{adjustbox}, \usepackage{colortbl}
+% Define in the preamble: \newcommand{\best}[1]{\cellcolor{green!25}\textbf{#1}}
+% Define in the preamble: \newcommand{\secondbest}[1]{\cellcolor{blue!15}#1}
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\small
+\caption{Mean reward comparison for FP32 and weight-only 8-bit QAT trained from scratch for 2.5 million steps. Reward SD, best reward and worst reward describe policy mean rewards across training seeds. Green and blue indicate the best and second-best values within each model size, respectively.}
+\label{tab:scratch-mean-reward-comparison-all}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llrrrrrrr}
+\toprule
+Size & Model & Mean reward $\uparrow$ & Reward SD $\downarrow$ & Best reward $\uparrow$ & Worst reward $\uparrow$ & Solve (\%) $\uparrow$ & Success (\%) $\uparrow$ & Failure (\%) $\downarrow$ \\
+\midrule
+16x16 & FP32 (Baseline) & \secondbest{112.15} & \best{61.12} & \secondbest{185.05} & \best{21.80} & \secondbest{23.00} & \secondbest{62.60} & \secondbest{12.60} \\
+16x16 & W8 QAT & \best{136.00} & \secondbest{100.78} & \best{217.03} & \secondbest{-58.41} & \best{44.20} & \best{63.40} & \best{10.40} \\
+16x16 & W8 exported & \best{136.00} & \secondbest{100.78} & \best{217.03} & \secondbest{-58.41} & \best{44.20} & \best{63.40} & \best{10.40} \\
+\midrule
+32x32 & FP32 (Baseline) & \best{224.46} & \secondbest{26.61} & \best{253.20} & \secondbest{173.94} & \best{82.80} & \best{93.20} & \best{2.80} \\
+32x32 & W8 QAT & \secondbest{214.23} & \best{13.93} & \secondbest{239.35} & \best{200.20} & \secondbest{76.20} & \secondbest{87.80} & \secondbest{6.40} \\
+32x32 & W8 exported & \secondbest{214.23} & \best{13.93} & \secondbest{239.35} & \best{200.20} & \secondbest{76.20} & \secondbest{87.80} & \secondbest{6.40} \\
+\midrule
+64x64 & FP32 (Baseline) & \best{237.70} & \best{24.63} & \best{268.98} & \best{207.06} & \best{84.20} & \secondbest{86.00} & \secondbest{3.00} \\
+64x64 & W8 QAT & \secondbest{229.53} & \secondbest{27.18} & \secondbest{260.87} & \secondbest{181.95} & \secondbest{78.40} & \best{94.20} & \best{2.80} \\
+64x64 & W8 exported & \secondbest{229.53} & \secondbest{27.18} & \secondbest{260.87} & \secondbest{181.95} & \secondbest{78.40} & \best{94.20} & \best{2.80} \\
+\midrule
+128x128 & FP32 (Baseline) & \best{266.60} & \best{6.75} & \best{279.64} & \best{261.19} & \best{94.60} & \best{94.40} & \best{1.80} \\
+128x128 & W8 QAT & \secondbest{263.38} & \secondbest{9.11} & \secondbest{276.10} & \secondbest{250.63} & \secondbest{93.60} & \secondbest{93.60} & \secondbest{2.60} \\
+128x128 & W8 exported & \secondbest{263.38} & \secondbest{9.11} & \secondbest{276.10} & \secondbest{250.63} & \secondbest{93.60} & \secondbest{93.60} & \secondbest{2.60} \\
+\midrule
+256x256 & FP32 (Baseline) & \secondbest{270.37} & 10.22 & \best{280.11} & 256.33 & \secondbest{92.40} & \secondbest{92.40} & \best{2.40} \\
+256x256 & W8 QAT & \best{273.96} & \best{4.59} & 279.55 & \best{267.58} & \best{96.60} & \best{96.60} & \secondbest{3.00} \\
+256x256 & W8 exported & \best{273.96} & \secondbest{4.60} & \secondbest{279.57} & \secondbest{267.57} & \best{96.60} & \best{96.60} & \secondbest{3.00} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+\end{landscape}

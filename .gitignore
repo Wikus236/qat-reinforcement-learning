@@ -1,0 +1,46 @@
+# Local Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editors and operating-system files
+.vscode/
+.DS_Store
+.ipynb_checkpoints/
+
+# Local credentials and machine-specific configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+service-account*.json
+
+# Model binaries and intermediate training checkpoints.
+# Keep evaluation CSVs, final report plots and exported Arduino headers tracked.
+*.pth
+*.pt
+*.zip
+*.onnx
+**/checkpoints/
+**/qat_checkpoints/
+
+# Runtime logs, process identifiers and build output
+*.log
+*.pid
+**/logs/
+events.out.tfevents.*
+build/
+dist/
+
+# Unrelated coursework and its saved notebook outputs; retained locally.
+/archive/coursework/
+
+# Preserved Python caches from the former flat layout
+.cache/

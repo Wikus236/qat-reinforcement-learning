@@ -1,0 +1,6 @@
+Size,Model,Mean inference time (us),Inference SD across seeds (us),Mean timing SD within benchmark (us),Inference time reduction vs FP32 (%),Note
+256x256,FP32 (Baseline),8.645236,0.055926,0.103969,0.00,Custom FP32 inference
+256x256,W8 exported,38.625354,0.141650,0.228209,-346.78,Measured INT8 weight export
+256x256,W8A8 exported,44.200771,0.137596,0.385820,-411.27,Measured INT8 weights; theoretical INT8 activations
+256x256,W4 simulated,38.564348,0.202968,0.208180,-346.08,Simulated 4-bit weights stored as INT8; packed INT4 memory is theoretical
+256x256,W4A4 simulated,44.313286,0.177997,0.233910,-412.57,Simulated 4-bit weights/activations stored as INT8; packed INT4 memory is theoretical

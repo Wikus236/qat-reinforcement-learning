@@ -1,0 +1,26 @@
+Size,Model,Actual stored params (MB),Actual stored reduction (%),Theoretical packed params (MB),Theoretical param reduction (%),Theoretical activations (MB),Activation reduction (%),Theoretical runtime memory (MB),Runtime memory reduction (%),Note
+16x16,FP32 (Baseline),0.001846,0.00,0.001846,0.00,0.000122,0.00,0.001968,0.00,Custom FP32 inference
+16x16,W8 exported,0.000576,68.80,0.000576,68.80,0.000122,0.00,0.000698,64.53,Measured INT8 weight export
+16x16,W8A8 exported,0.000584,68.39,0.000584,68.39,0.000031,75.00,0.000614,68.80,Measured INT8 weights; theoretical INT8 activations
+16x16,W4 simulated,0.000576,68.80,0.000362,80.37,0.000122,0.00,0.000484,75.39,Simulated 4-bit weights stored as INT8; packed INT4 memory is theoretical
+16x16,W4A4 simulated,0.000584,68.39,0.000370,79.96,0.000015,87.50,0.000385,80.43,Simulated 4-bit weights/activations stored as INT8; packed INT4 memory is theoretical
+32x32,FP32 (Baseline),0.005630,0.00,0.005630,0.00,0.000244,0.00,0.005875,0.00,Custom FP32 inference
+32x32,W8 exported,0.001614,71.34,0.001614,71.34,0.000244,0.00,0.001858,68.38,Measured INT8 weight export
+32x32,W8A8 exported,0.001621,71.21,0.001621,71.21,0.000061,75.00,0.001682,71.36,Measured INT8 weights; theoretical INT8 activations
+32x32,W4 simulated,0.001614,71.34,0.000942,83.27,0.000244,0.00,0.001186,79.81,Simulated 4-bit weights stored as INT8; packed INT4 memory is theoretical
+32x32,W4A4 simulated,0.001621,71.21,0.000950,83.13,0.000031,87.50,0.000980,83.31,Simulated 4-bit weights/activations stored as INT8; packed INT4 memory is theoretical
+64x64,FP32 (Baseline),0.019058,0.00,0.019058,0.00,0.000488,0.00,0.019547,0.00,Custom FP32 inference
+64x64,W8 exported,0.005154,72.96,0.005154,72.96,0.000488,0.00,0.005642,71.14,Measured INT8 weight export
+64x64,W8A8 exported,0.005161,72.92,0.005161,72.92,0.000122,75.00,0.005283,72.97,Measured INT8 weights; theoretical INT8 activations
+64x64,W4 simulated,0.005154,72.96,0.002834,85.13,0.000488,0.00,0.003323,83.00,Simulated 4-bit weights stored as INT8; packed INT4 memory is theoretical
+64x64,W4A4 simulated,0.005161,72.92,0.002842,85.09,0.000061,87.50,0.002903,85.15,Simulated 4-bit weights/activations stored as INT8; packed INT4 memory is theoretical
+128x128,FP32 (Baseline),0.069351,0.00,0.069351,0.00,0.000977,0.00,0.070328,0.00,Custom FP32 inference
+128x128,W8 exported,0.018093,73.91,0.018093,73.91,0.000977,0.00,0.019070,72.88,Measured INT8 weight export
+128x128,W8A8 exported,0.018101,73.90,0.018101,73.90,0.000244,75.00,0.018345,73.92,Measured INT8 weights; theoretical INT8 activations
+128x128,W4 simulated,0.018093,73.91,0.009548,86.23,0.000977,0.00,0.010525,85.03,Simulated 4-bit weights stored as INT8; packed INT4 memory is theoretical
+128x128,W4A4 simulated,0.018101,73.90,0.009556,86.22,0.000122,87.50,0.009678,86.24,Simulated 4-bit weights/activations stored as INT8; packed INT4 memory is theoretical
+256x256,FP32 (Baseline),0.263687,0.00,0.263687,0.00,0.001953,0.00,0.265640,0.00,Custom FP32 inference
+256x256,W8 exported,0.067410,74.44,0.067410,74.44,0.001953,0.00,0.069363,73.89,Measured INT8 weight export
+256x256,W8A8 exported,0.067417,74.43,0.067417,74.43,0.000488,75.00,0.067905,74.44,Measured INT8 weights; theoretical INT8 activations
+256x256,W4 simulated,0.067410,74.44,0.034695,86.84,0.001953,0.00,0.036648,86.20,Simulated 4-bit weights stored as INT8; packed INT4 memory is theoretical
+256x256,W4A4 simulated,0.067417,74.43,0.034702,86.84,0.000244,87.50,0.034946,86.84,Simulated 4-bit weights/activations stored as INT8; packed INT4 memory is theoretical

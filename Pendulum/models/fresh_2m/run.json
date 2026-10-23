@@ -1,0 +1,15 @@
+{
+  "status": "complete",
+  "from_scratch": true,
+  "target_steps": 2000000,
+  "seed": 42,
+  "architecture": [
+    128,
+    128
+  ],
+  "quantization": "8-bit weights only",
+  "eval_freq": 25000,
+  "eval_episodes": 20,
+  "started_utc": "2026-10-23T11:15:41.562287+00:00",
+  "finished_utc": "2026-10-23T11:30:15.446931+00:00"
+}
