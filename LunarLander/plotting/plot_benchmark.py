@@ -1047,7 +1047,7 @@ def plot_reward_vs_memory(
     plot_reward_vs_memory_metric(
         grouped,
         "theoretical_parameter_memory_mb",
-        "Theoretical packed parameter memory (MB)",
+        "Theoretical packed parameter memory (MiB)",
         "Reward vs theoretical packed parameter memory",
         "reward_vs_theoretical_memory.png",
         SPLIT_SERIES_THEORETICAL,
@@ -1060,7 +1060,7 @@ def plot_reward_vs_runtime_memory(
     plot_reward_vs_memory_metric(
         grouped,
         "theoretical_runtime_memory_mb",
-        "Theoretical parameter + activation memory (MB)",
+        "Theoretical parameter + activation memory (MiB)",
         "Reward vs theoretical runtime memory",
         "reward_vs_theoretical_runtime_memory.png",
         SPLIT_SERIES_THEORETICAL,
@@ -1206,7 +1206,7 @@ def main():
     plot_summary_metric(
         grouped,
         "file_size_mb",
-        "File size (MB)",
+        "File size (MiB)",
         "summary_file_size.png",
         SPLIT_SERIES_MEASURED,
     )
@@ -1228,7 +1228,7 @@ def main():
     plot_summary_metric(
         grouped,
         "parameter_memory_mb",
-        "Actual stored parameter memory (MB)",
+        "Actual stored parameter memory (MiB)",
         "summary_stored_parameter_memory.png",
         SPLIT_SERIES_MEASURED,
     )
@@ -1247,7 +1247,7 @@ def main():
     plot_detailed_metric(
         grouped,
         "theoretical_parameter_memory_mb",
-        "Theoretical packed deployment memory (MB)",
+        "Theoretical packed deployment memory (MiB)",
         "detailed_theoretical_memory.png",
         SPLIT_SERIES_THEORETICAL,
     )
@@ -1255,7 +1255,7 @@ def main():
     plot_summary_metric(
         grouped,
         "theoretical_parameter_memory_mb",
-        "Theoretical packed deployment memory (MB)",
+        "Theoretical packed deployment memory (MiB)",
         "summary_theoretical_memory.png",
         SPLIT_SERIES_THEORETICAL,
     )
@@ -1291,7 +1291,7 @@ def main():
     plot_summary_metric(
         grouped,
         "theoretical_activation_memory_mb",
-        "Theoretical activation memory per inference (MB)",
+        "Theoretical activation memory per inference (MiB)",
         "summary_theoretical_activation_memory.png",
         SPLIT_SERIES_THEORETICAL,
     )
@@ -1308,7 +1308,7 @@ def main():
     plot_summary_metric(
         grouped,
         "theoretical_runtime_memory_mb",
-        "Theoretical parameter + activation memory (MB)",
+        "Theoretical parameter + activation memory (MiB)",
         "summary_theoretical_runtime_memory.png",
         SPLIT_SERIES_THEORETICAL,
     )
@@ -1370,7 +1370,7 @@ def main():
     plot_summary_metric(
         grouped,
         "peak_python_memory_mb",
-        "Peak Python memory (MB)",
+        "Peak Python memory (MiB)",
         "summary_peak_python_memory.png",
         SPLIT_SERIES_MEASURED,
     )
