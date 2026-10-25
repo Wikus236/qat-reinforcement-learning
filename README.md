@@ -84,6 +84,21 @@ Python entry point directly, run it as a module from the repository root, e.g.:
 .venv/bin/python -m LunarLander.evaluation.compare_scratch --curves-only
 ```
 
+### Single-model validation run
+
+Run `make train_validate` from the repository root to train one fresh **FP32
+64x64, seed 0** policy for **2,500,000 steps** using the existing initial baseline
+trainer. It preserves the current 25,000-step block/exploration behaviour and
+prints the same live training statistics, evaluations and checkpoint progress.
+
+All output goes to `LunarLander/models/validate/`: the best checkpoint,
+per-block checkpoints, training-curve CSV, `training.log`, and `run.json` with run
+status and configuration. The command refuses to start if that directory already
+exists, including after an interrupted run. It does not resume or overwrite it.
+This directory is excluded from the standard comparison and benchmark inputs.
+
+To keep the Mac awake, run `make nosleep` in a separate terminal while training.
+
 ### LunarLander policies
 
 | Folder under `LunarLander/models/` | Experiment |

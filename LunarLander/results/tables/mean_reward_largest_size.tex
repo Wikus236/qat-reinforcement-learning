@@ -12,11 +12,11 @@
 \toprule
 Size & Model & Mean reward $\uparrow$ & Reward SD $\downarrow$ & Best reward $\uparrow$ & Worst reward $\uparrow$ & Solve (\%) $\uparrow$ & Success (\%) $\uparrow$ & Failure (\%) $\downarrow$ \\
 \midrule
-256x256 & FP32 (Baseline) & 272.22 & 8.36 & \best{280.11} & 259.60 & 94.20 & 94.20 & \secondbest{2.00} \\
-256x256 & W8 exported & \secondbest{272.55} & \best{4.08} & 277.93 & \best{267.60} & \secondbest{95.40} & \secondbest{94.80} & 2.20 \\
-256x256 & W8A8 exported & \best{275.23} & \secondbest{4.47} & \secondbest{278.37} & \secondbest{266.38} & \best{96.80} & \best{96.80} & \best{1.40} \\
-256x256 & W4 simulated & 160.95 & 84.36 & 243.31 & 2.11 & 58.00 & 70.40 & 12.80 \\
-256x256 & W4A4 simulated & -164.29 & 212.63 & 123.66 & -504.86 & 11.60 & 17.00 & 50.40 \\
+256x256 & FP32 (Baseline) & \best{258.69} & 16.15 & \best{279.40} & \secondbest{237.59} & \secondbest{87.00} & \secondbest{87.20} & \secondbest{3.00} \\
+256x256 & W8 exported & \secondbest{258.16} & \best{10.69} & \secondbest{274.25} & \best{243.61} & \best{92.80} & \best{93.00} & \best{1.80} \\
+256x256 & W8A8 exported & 237.98 & \secondbest{11.68} & 253.59 & 218.56 & 84.40 & 86.40 & \secondbest{3.00} \\
+256x256 & W4 simulated & 201.63 & 57.05 & 244.36 & 96.84 & 74.20 & 78.20 & 11.00 \\
+256x256 & W4A4 simulated & 83.23 & 86.82 & 188.80 & -48.56 & 30.20 & 49.00 & 22.20 \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}

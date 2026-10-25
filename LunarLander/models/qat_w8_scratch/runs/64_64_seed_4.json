@@ -5,9 +5,10 @@
   "total_steps": 2500000,
   "block_size": 25000,
   "from_scratch": true,
+  "exploration_decay_steps": 500000,
   "completed": true,
-  "best_step": 1825000,
-  "best_mean_reward": 263.90367959694817,
+  "best_step": 1100000,
+  "best_mean_reward": 255.94508730835764,
   "eval_seeds": [
     42,
     123,

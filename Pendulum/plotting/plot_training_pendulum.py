@@ -7,6 +7,7 @@ No training, checkpoint loading or hardware connection is performed.
 from Pendulum.paths import APP_ROOT
 import argparse
 import csv
+import textwrap
 from pathlib import Path
 
 import matplotlib
@@ -39,10 +40,10 @@ def read_training(path, phase):
 
 
 def plot_training(logs, output_dir):
-    plt.rcParams.update({"font.size": 16, "axes.titlesize": 20,
-                         "axes.labelsize": 19, "xtick.labelsize": 17,
-                         "ytick.labelsize": 17, "legend.fontsize": 15,
-                         "figure.titlesize": 22})
+    plt.rcParams.update({"font.size": 20, "axes.titlesize": 24,
+                         "axes.labelsize": 23, "xtick.labelsize": 20,
+                         "ytick.labelsize": 20, "legend.fontsize": 18,
+                         "figure.titlesize": 26})
     fig, axes = plt.subplots(2, len(logs), figsize=(8 * len(logs), 10),
                              squeeze=False, sharex="col")
     for column, (phase, rows) in enumerate(logs.items()):
@@ -58,7 +59,7 @@ def plot_training(logs, output_dir):
                     zorder=5, label="Highest logged mean")
         subtitle = (f"Base training (log starts at {steps[0]:.2f}M steps)"
                     if phase == "base" else "Mild refinement (phase-local steps)")
-        top.set_title(subtitle)
+        top.set_title(textwrap.fill(subtitle, width=34))
         top.set_ylabel("Evaluation reward")
         top.legend(loc="lower right")
         bottom.plot(steps, [100 * row["capture_rate"] for row in rows],
@@ -71,7 +72,7 @@ def plot_training(logs, output_dir):
         for ax in (top, bottom):
             ax.grid(alpha=0.25)
             ax.set_xlim(steps[0], steps[-1])
-    fig.suptitle("Pendulum QAT training: recorded evaluation history")
+    fig.suptitle(textwrap.fill("Pendulum QAT training: recorded evaluation history", width=55 if len(logs) > 1 else 32))
     fig.tight_layout()
     for extension in ("png", "pdf"):
         fig.savefig(output_dir / f"pendulum_training.{extension}", dpi=250, bbox_inches="tight")

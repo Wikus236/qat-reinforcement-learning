@@ -184,6 +184,8 @@ class DQN_QAT_4:
         verbose: int = 0,
         seed: int = 42,
         device: str | None = None,
+        exploration_decay_steps: int | None = None,
+        exploration_initial_eps: float = 1.0,
     ):
         if policy != "MlpPolicy":
             raise ValueError("This local DQN only supports policy='MlpPolicy'.")
@@ -202,10 +204,19 @@ class DQN_QAT_4:
         self.train_freq = train_freq
         self.gradient_steps = gradient_steps
         self.target_update_interval = target_update_interval
+        if exploration_decay_steps is not None and exploration_decay_steps <= 0:
+            raise ValueError("exploration_decay_steps must be positive or None")
+        self.exploration_decay_steps = exploration_decay_steps
+        self.exploration_initial_eps = exploration_initial_eps
         self.exploration_fraction = exploration_fraction
         self.exploration_final_eps = exploration_final_eps
         self.verbose = verbose
         self.seed = seed
+        # Seed before either network is constructed so initialization depends
+        # on this run's seed rather than earlier models in the same process.
+        random.seed(self.seed)
+        np.random.seed(self.seed)
+        torch.manual_seed(self.seed)
         self.num_timesteps = 0
 
         self.device = torch.device(
@@ -276,7 +287,9 @@ class DQN_QAT_4:
             next_obs, reward, terminated, truncated, info = self.env.step(action)
             done = terminated or truncated
 
-            self.replay_buffer.add(obs, action, reward, next_obs, done)
+            # End the rollout on termination or truncation, but bootstrap
+            # through external time limits when computing DQN targets.
+            self.replay_buffer.add(obs, action, reward, next_obs, terminated)
 
             obs = next_obs
             episode_reward += reward
@@ -388,6 +401,8 @@ class DQN_QAT_4:
                 "train_freq": self.train_freq,
                 "gradient_steps": self.gradient_steps,
                 "target_update_interval": self.target_update_interval,
+                "exploration_initial_eps": self.exploration_initial_eps,
+                "exploration_decay_steps": self.exploration_decay_steps,
                 "exploration_fraction": self.exploration_fraction,
                 "exploration_final_eps": self.exploration_final_eps,
                 "verbose": self.verbose,
@@ -417,6 +432,8 @@ class DQN_QAT_4:
             "train_freq": checkpoint["train_freq"],
             "gradient_steps": checkpoint["gradient_steps"],
             "target_update_interval": checkpoint["target_update_interval"],
+            "exploration_initial_eps": checkpoint.get("exploration_initial_eps", 1.0),
+            "exploration_decay_steps": checkpoint.get("exploration_decay_steps"),
             "exploration_fraction": checkpoint["exploration_fraction"],
             "exploration_final_eps": checkpoint["exploration_final_eps"],
             "verbose": checkpoint["verbose"],
@@ -461,9 +478,13 @@ class DQN_QAT_4:
         return float(loss.item())
 
     def _exploration_rate(self, total_timesteps: int):
-        decay_steps = max(int(self.exploration_fraction * total_timesteps), 1)
+        # An explicit horizon persists across learn() calls and saved checkpoints.
+        decay_steps = (self.exploration_decay_steps if self.exploration_decay_steps is not None
+                       else max(int(self.exploration_fraction * total_timesteps), 1))
         progress = min(self.num_timesteps / decay_steps, 1.0)
-        return 1.0 + progress * (self.exploration_final_eps - 1.0)
+        return self.exploration_initial_eps + progress * (
+            self.exploration_final_eps - self.exploration_initial_eps
+        )
 
     @staticmethod
     def _save_path(path) -> Path:

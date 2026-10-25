@@ -1,5 +1,6 @@
 from LunarLander.paths import APP_ROOT
 import csv
+import textwrap
 from collections import defaultdict
 from pathlib import Path
 
@@ -8,13 +9,13 @@ import numpy as np
 
 
 plt.rcParams.update({
-    "font.size": 16,
-    "axes.titlesize": 20,
-    "axes.labelsize": 19,
-    "xtick.labelsize": 17,
-    "ytick.labelsize": 17,
-    "legend.fontsize": 15,
-    "figure.titlesize": 22,
+    "font.size": 20,
+    "axes.titlesize": 24,
+    "axes.labelsize": 23,
+    "xtick.labelsize": 20,
+    "ytick.labelsize": 20,
+    "legend.fontsize": 18,
+    "figure.titlesize": 26,
 })
 
 
@@ -279,11 +280,11 @@ def make_split_figure(title):
     figure, axes = plt.subplots(
         1,
         2,
-        figsize=(15, 6.5),
+        figsize=(15, 8),
         sharey=True,
     )
 
-    figure.suptitle(title)
+    figure.suptitle(textwrap.fill(title, width=70))
 
     return figure, axes
 
@@ -312,6 +313,10 @@ def finish_split_axis(
 
 
 def save_split_figure(figure, filename):
+    for axis in figure.axes:
+        axis.set_ylabel(textwrap.fill(axis.get_ylabel(), width=35))
+        axis.set_xlabel(textwrap.fill(axis.get_xlabel(), width=35))
+        axis.set_title(textwrap.fill(axis.get_title(), width=35))
     figure.tight_layout()
     figure.savefig(
         OUTPUT_DIR / filename,

@@ -1,3 +1,5 @@
+from LunarLander.training.settings import selected_training_config
+from LunarLander.training.settings import EXPLORATION_DECAY_STEPS
 from LunarLander.paths import APP_ROOT
 import gymnasium as gym
 import csv
@@ -72,17 +74,19 @@ def format_time(seconds):
     return f"{secs}s"
 
 
-if __name__ == "__main__":
-    for size in MODEL_SIZES:
-        for seed in SEEDS:
-            save_path = Path(f"{APP_ROOT}/models/initial_fp32/my_dqn_lander_{size}_{size}_seed_{seed}")
+def train_models(model_sizes=MODEL_SIZES, seeds=SEEDS, output_dir=None):
+    """Run the initial FP32 protocol in the selected model directory."""
+    output_dir = Path(output_dir) if output_dir is not None else APP_ROOT / "models" / "initial_fp32"
+    for size in model_sizes:
+        for seed in seeds:
+            save_path = output_dir / f"my_dqn_lander_{size}_{size}_seed_{seed}"
             save_path.parent.mkdir(exist_ok=True)
             checkpoint_dir = Path(
-                f"{APP_ROOT}/models/initial_fp32/checkpoints/"
+                f"{output_dir}/checkpoints/"
                 f"{size}_{size}_seed_{seed}"
             )
             curve_path = Path(
-                f"{APP_ROOT}/models/initial_fp32/training_curves/"
+                f"{output_dir}/training_curves/"
                 f"base_{size}_{size}_seed_{seed}.csv"
             )
             checkpoint_dir.mkdir(parents=True, exist_ok=True)
@@ -113,6 +117,7 @@ if __name__ == "__main__":
                 gradient_steps=1,
                 target_update_interval=1_000,
                 exploration_fraction=0.2,
+                exploration_decay_steps=EXPLORATION_DECAY_STEPS,
                 exploration_final_eps=0.05,
                 seed=seed,
                 verbose=1,
@@ -122,6 +127,7 @@ if __name__ == "__main__":
             block_size = 25_000
             total_timesteps = 2_500_000
             num_blocks = total_timesteps // block_size
+            print(f"Exploration decay: {EXPLORATION_DECAY_STEPS:,} steps")
             start_time = time.time()
 
             print()
@@ -242,3 +248,8 @@ if __name__ == "__main__":
                         print(f"Best reward remains: {best_mean_reward:.2f}")
 
             env.close()
+
+
+if __name__ == "__main__":
+    selection = selected_training_config(MODEL_SIZES, SEEDS)
+    train_models(model_sizes=selection.sizes, seeds=selection.seeds)

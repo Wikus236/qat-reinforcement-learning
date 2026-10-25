@@ -1,0 +1,32 @@
+{
+  "status": "complete",
+  "model_type": "FP32",
+  "from_scratch": true,
+  "architecture": [
+    64,
+    64
+  ],
+  "seed": 0,
+  "target_steps": 2500000,
+  "block_size": 25000,
+  "eval_seeds": [
+    42,
+    123,
+    456,
+    789,
+    111,
+    234,
+    23,
+    36,
+    964,
+    231
+  ],
+  "protocol": "existing initial FP32 baseline, including blockwise exploration and reseeding",
+  "output_dir": "/Users/wikusvanbiljon/Documents/Skripsie/LunarLander/models/validate",
+  "started_utc": "2026-10-23T20:29:41.949306+00:00",
+  "source_sha256": {
+    "train_base_initial.py": "274c9f7cdd59cecad46b9b9990cc50d769002be504deeda9bd2527ed3a28bf7f",
+    "dqn.py": "538a82d1a1591c0cb133668beb759a725f2d5af6a56ebf78d3aefbe4afde3525"
+  },
+  "finished_utc": "2026-10-23T20:37:25.939143+00:00"
+}

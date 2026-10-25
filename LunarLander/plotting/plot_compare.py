@@ -1,5 +1,6 @@
 from LunarLander.paths import APP_ROOT
 import csv
+import textwrap
 from collections import defaultdict
 from pathlib import Path
 
@@ -8,13 +9,13 @@ import numpy as np
 
 
 plt.rcParams.update({
-    "font.size": 16,
-    "axes.titlesize": 20,
-    "axes.labelsize": 19,
-    "xtick.labelsize": 17,
-    "ytick.labelsize": 17,
-    "legend.fontsize": 15,
-    "figure.titlesize": 22,
+    "font.size": 20,
+    "axes.titlesize": 24,
+    "axes.labelsize": 23,
+    "xtick.labelsize": 20,
+    "ytick.labelsize": 20,
+    "legend.fontsize": 18,
+    "figure.titlesize": 26,
 })
 
 
@@ -169,6 +170,8 @@ def plot_detailed_metric(
     plt.grid(True, alpha=0.3)
     plt.legend()
 
+    plt.title(textwrap.fill(plt.gca().get_title(), width=55))
+    plt.ylabel(textwrap.fill(plt.gca().get_ylabel(), width=35))
     plt.tight_layout()
 
     plt.savefig(
@@ -259,6 +262,8 @@ def plot_summary_metric(
     plt.grid(True, alpha=0.3)
     plt.legend()
 
+    plt.title(textwrap.fill(plt.gca().get_title(), width=55))
+    plt.ylabel(textwrap.fill(plt.gca().get_ylabel(), width=35))
     plt.tight_layout()
 
     plt.savefig(
@@ -357,6 +362,8 @@ def plot_summary_retention(grouped):
     plt.grid(True, alpha=0.3)
     plt.legend()
 
+    plt.title(textwrap.fill(plt.gca().get_title(), width=55))
+    plt.ylabel(textwrap.fill(plt.gca().get_ylabel(), width=35))
     plt.tight_layout()
 
     plt.savefig(

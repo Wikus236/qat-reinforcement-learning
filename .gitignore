@@ -44,3 +44,6 @@ dist/
 
 # Preserved Python caches from the former flat layout
 .cache/
+
+# Preserved previous policies and reports from selected-width retraining
+/LunarLander/reruns/

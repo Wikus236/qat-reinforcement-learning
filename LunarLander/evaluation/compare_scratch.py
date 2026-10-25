@@ -80,26 +80,27 @@ def validate_runs(fp32_dir, qat_dir, sizes, seeds):
 
 
 def plot_curves(curves, sizes, seeds, output_dir):
+    import textwrap
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
     # Match the typography used by plot_compare.py and plot_benchmark.py.
     plt.rcParams.update({
-        "font.size": 16,
-        "axes.titlesize": 20,
-        "axes.labelsize": 19,
-        "xtick.labelsize": 17,
-        "ytick.labelsize": 17,
-        "legend.fontsize": 15,
-        "figure.titlesize": 22,
+        "font.size": 20,
+        "axes.titlesize": 24,
+        "axes.labelsize": 23,
+        "xtick.labelsize": 20,
+        "ytick.labelsize": 20,
+        "legend.fontsize": 18,
+        "figure.titlesize": 26,
     })
 
     combined = []
-    all_fig, all_ax = plt.subplots(figsize=(14, 9))
+    all_fig, all_ax = plt.subplots(figsize=(14, 11))
     colors = plt.get_cmap("tab10")
     for size_index, size in enumerate(sizes):
-        fig, ax = plt.subplots(figsize=(11, 7))
+        fig, ax = plt.subplots(figsize=(12, 9))
         for kind, label in ((TYPES[0], "FP32 from scratch"), (TYPES[1], "W8 QAT from scratch")):
             runs = [curves[kind, size, seed] for seed in seeds]
             steps = np.array([int(row["training_steps"]) for row in runs[0]])
@@ -119,15 +120,21 @@ def plot_curves(curves, sizes, seeds, output_dir):
                                      std_across_seeds=float(std)))
         ax.axhline(200, linestyle="--", color="gray", label="Solve threshold")
         ax.set(xlabel="Training environment steps", ylabel="Fixed-seed mean reward",
-               title=f"LunarLander {size}x{size}: mean +/- SD across {len(seeds)} seeds")
-        ax.legend()
+               title=textwrap.fill(f"LunarLander {size}x{size}: mean +/- SD across {len(seeds)} seeds", 45))
+        ymin, ymax = ax.get_ylim()
+        ax.set_ylim(max(ymin, -1000), min(ymax, 300))
+        ax.ticklabel_format(axis="x", style="sci", scilimits=(0, 0))
+        ax.legend(loc="best")
         fig.tight_layout()
         fig.savefig(output_dir / f"training_curve_{size}_{size}.png", dpi=180)
         plt.close(fig)
     all_ax.axhline(200, linestyle=":", color="gray", label="Solve threshold")
     all_ax.set(xlabel="Training environment steps", ylabel="Fixed-seed mean reward",
-               title=f"LunarLander all model sizes: mean +/- SD across {len(seeds)} seeds")
-    all_ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.16))
+               title=textwrap.fill(f"LunarLander all model sizes: mean +/- SD across {len(seeds)} seeds", 48))
+    ymin, ymax = all_ax.get_ylim()
+    all_ax.set_ylim(max(ymin, -1000), min(ymax, 300))
+    all_ax.ticklabel_format(axis="x", style="sci", scilimits=(0, 0))
+    all_ax.legend(loc="best", ncol=3, columnspacing=1.0, handletextpad=0.5)
     all_ax.grid(alpha=0.2)
     all_fig.tight_layout()
     all_fig.savefig(output_dir / "training_curve_all_sizes.png", dpi=180, bbox_inches="tight")

@@ -12,25 +12,25 @@
 \toprule
 Size & Model & Mean reward $\uparrow$ & Reward SD $\downarrow$ & Best reward $\uparrow$ & Worst reward $\uparrow$ & Solve (\%) $\uparrow$ & Success (\%) $\uparrow$ & Failure (\%) $\downarrow$ \\
 \midrule
-16x16 & FP32 (Baseline) & \secondbest{112.15} & \best{61.12} & \secondbest{185.05} & \best{21.80} & \secondbest{23.00} & \secondbest{62.60} & \secondbest{12.60} \\
-16x16 & W8 QAT & \best{136.00} & \secondbest{100.78} & \best{217.03} & \secondbest{-58.41} & \best{44.20} & \best{63.40} & \best{10.40} \\
-16x16 & W8 exported & \best{136.00} & \secondbest{100.78} & \best{217.03} & \secondbest{-58.41} & \best{44.20} & \best{63.40} & \best{10.40} \\
+16x16 & FP32 (Baseline) & \best{141.55} & \best{39.17} & \best{187.78} & \best{96.86} & \best{39.20} & \best{72.80} & \secondbest{23.80} \\
+16x16 & W8 QAT & \secondbest{84.20} & \secondbest{87.14} & \secondbest{172.57} & \secondbest{-48.50} & \secondbest{28.00} & \secondbest{49.20} & \best{12.40} \\
+16x16 & W8 exported & \secondbest{84.20} & \secondbest{87.14} & \secondbest{172.57} & \secondbest{-48.50} & \secondbest{28.00} & \secondbest{49.20} & \best{12.40} \\
 \midrule
-32x32 & FP32 (Baseline) & \best{224.46} & \secondbest{26.61} & \best{253.20} & \secondbest{173.94} & \best{82.80} & \best{93.20} & \best{2.80} \\
-32x32 & W8 QAT & \secondbest{214.23} & \best{13.93} & \secondbest{239.35} & \best{200.20} & \secondbest{76.20} & \secondbest{87.80} & \secondbest{6.40} \\
-32x32 & W8 exported & \secondbest{214.23} & \best{13.93} & \secondbest{239.35} & \best{200.20} & \secondbest{76.20} & \secondbest{87.80} & \secondbest{6.40} \\
+32x32 & FP32 (Baseline) & \secondbest{184.15} & \secondbest{41.85} & \best{246.38} & \secondbest{130.21} & \best{60.00} & \secondbest{81.00} & \secondbest{6.20} \\
+32x32 & W8 QAT & \best{199.29} & \best{20.75} & \secondbest{238.50} & \best{178.79} & \secondbest{58.40} & \best{90.20} & \best{4.40} \\
+32x32 & W8 exported & \best{199.29} & \best{20.75} & \secondbest{238.50} & \best{178.79} & \secondbest{58.40} & \best{90.20} & \best{4.40} \\
 \midrule
-64x64 & FP32 (Baseline) & \best{237.70} & \best{24.63} & \best{268.98} & \best{207.06} & \best{84.20} & \secondbest{86.00} & \secondbest{3.00} \\
-64x64 & W8 QAT & \secondbest{229.53} & \secondbest{27.18} & \secondbest{260.87} & \secondbest{181.95} & \secondbest{78.40} & \best{94.20} & \best{2.80} \\
-64x64 & W8 exported & \secondbest{229.53} & \secondbest{27.18} & \secondbest{260.87} & \secondbest{181.95} & \secondbest{78.40} & \best{94.20} & \best{2.80} \\
+64x64 & FP32 (Baseline) & \best{241.68} & \best{11.36} & \best{252.63} & \best{224.32} & \best{86.60} & \best{91.40} & \secondbest{5.00} \\
+64x64 & W8 QAT & \secondbest{226.14} & \secondbest{28.89} & \secondbest{243.85} & \secondbest{168.67} & \secondbest{79.40} & \secondbest{89.80} & \best{1.80} \\
+64x64 & W8 exported & \secondbest{226.14} & \secondbest{28.89} & \secondbest{243.85} & \secondbest{168.67} & \secondbest{79.40} & \secondbest{89.80} & \best{1.80} \\
 \midrule
-128x128 & FP32 (Baseline) & \best{266.60} & \best{6.75} & \best{279.64} & \best{261.19} & \best{94.60} & \best{94.40} & \best{1.80} \\
-128x128 & W8 QAT & \secondbest{263.38} & \secondbest{9.11} & \secondbest{276.10} & \secondbest{250.63} & \secondbest{93.60} & \secondbest{93.60} & \secondbest{2.60} \\
-128x128 & W8 exported & \secondbest{263.38} & \secondbest{9.11} & \secondbest{276.10} & \secondbest{250.63} & \secondbest{93.60} & \secondbest{93.60} & \secondbest{2.60} \\
+128x128 & FP32 (Baseline) & \secondbest{252.13} & \secondbest{14.90} & \secondbest{262.83} & \secondbest{223.12} & \secondbest{89.20} & \secondbest{90.00} & \secondbest{3.00} \\
+128x128 & W8 QAT & \best{259.86} & \best{9.59} & \best{270.62} & \best{243.97} & \best{94.00} & \best{94.00} & \best{2.00} \\
+128x128 & W8 exported & \best{259.86} & \best{9.59} & \best{270.62} & \best{243.97} & \best{94.00} & \best{94.00} & \best{2.00} \\
 \midrule
-256x256 & FP32 (Baseline) & \secondbest{270.37} & 10.22 & \best{280.11} & 256.33 & \secondbest{92.40} & \secondbest{92.40} & \best{2.40} \\
-256x256 & W8 QAT & \best{273.96} & \best{4.59} & 279.55 & \best{267.58} & \best{96.60} & \best{96.60} & \secondbest{3.00} \\
-256x256 & W8 exported & \best{273.96} & \secondbest{4.60} & \secondbest{279.57} & \secondbest{267.57} & \best{96.60} & \best{96.60} & \secondbest{3.00} \\
+256x256 & FP32 (Baseline) & \best{262.10} & \secondbest{14.13} & \best{279.40} & \secondbest{237.59} & \secondbest{89.00} & \secondbest{89.00} & \best{3.40} \\
+256x256 & W8 QAT & \secondbest{261.75} & \best{7.95} & \secondbest{273.66} & \best{252.43} & \best{91.00} & \best{91.20} & \secondbest{5.00} \\
+256x256 & W8 exported & \secondbest{261.75} & \best{7.95} & \secondbest{273.66} & \best{252.43} & \best{91.00} & \best{91.20} & \secondbest{5.00} \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}

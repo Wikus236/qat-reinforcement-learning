@@ -13,13 +13,13 @@ from LunarLander.plotting.plot_steps import (
 
 
 plt.rcParams.update({
-    "font.size": 16,
-    "axes.titlesize": 20,
-    "axes.labelsize": 19,
-    "xtick.labelsize": 17,
-    "ytick.labelsize": 17,
-    "legend.fontsize": 15,
-    "figure.titlesize": 22,
+    "font.size": 20,
+    "axes.titlesize": 24,
+    "axes.labelsize": 23,
+    "xtick.labelsize": 20,
+    "ytick.labelsize": 20,
+    "legend.fontsize": 18,
+    "figure.titlesize": 26,
 })
 
 
@@ -83,35 +83,36 @@ def main():
             linewidth=1,
         )
         ax.set_title(f"{size}x{size}")
+        ax.ticklabel_format(axis="x", style="sci", scilimits=(0, 0))
         ax.grid(
             True,
             alpha=0.3,
         )
 
+    for ax in flat_axes[:-1]:
+        ymin, ymax = ax.get_ylim()
+        ax.set_ylim(max(ymin, -1000), min(ymax, 300))
+
     flat_axes[-1].axis("off")
 
     figure.suptitle(
-        "LunarLander DQN Additional Training Curves by Layer Size"
+        "LunarLander DQN additional training\nby hidden-layer width"
     )
     figure.supxlabel(
         "Additional Training Timesteps",
-        y=0.065,
+        y=0.035,
     )
     figure.supylabel(
         "Mean Evaluation Reward"
     )
 
-    handles, labels = flat_axes[0].get_legend_handles_labels()
-    figure.legend(
-        handles,
-        labels,
-        loc="lower center",
-        ncol=len(labels),
-        bbox_to_anchor=(0.5, 0.015),
-    )
+    for ax in flat_axes[:-1]:
+        ax.legend(loc="best", ncol=3, columnspacing=0.7,
+                  handlelength=1.4, handletextpad=0.4, labelspacing=0.3)
 
-    figure.tight_layout(
-        rect=(0.04, 0.11, 1, 0.95)
+    figure.subplots_adjust(
+        left=0.16, right=0.98, bottom=0.11, top=0.83,
+        hspace=0.5, wspace=0.12,
     )
 
     output_dir = Path(f"{APP_ROOT}/results/figures/training")

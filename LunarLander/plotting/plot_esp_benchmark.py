@@ -18,13 +18,13 @@ DEFAULT_OUTPUT_DIR = Path(f"{APP_ROOT}/results/figures/esp32")
 
 
 plt.rcParams.update({
-    "font.size": 16,
-    "axes.titlesize": 20,
-    "axes.labelsize": 19,
-    "xtick.labelsize": 17,
-    "ytick.labelsize": 17,
-    "legend.fontsize": 15,
-    "figure.titlesize": 22,
+    "font.size": 20,
+    "axes.titlesize": 24,
+    "axes.labelsize": 23,
+    "xtick.labelsize": 20,
+    "ytick.labelsize": 20,
+    "legend.fontsize": 18,
+    "figure.titlesize": 26,
 })
 
 

@@ -13,35 +13,35 @@
 Size & Model & Mean time $\downarrow$ & SD across seeds $\downarrow$ & Mean timing SD $\downarrow$ & Reduction $\uparrow$ & Note \\
  &  & ($\mu$s) & ($\mu$s) & ($\mu$s) & (\%) &  \\
 \midrule
-16x16 & FP32 (Baseline) & \best{5.265574} & 0.154837 & 0.184765 & \best{0.00} & Custom FP32 \\
-16x16 & W8 exported & 7.288539 & 0.363042 & 0.365155 & -38.42 & INT8 weights \\
-16x16 & W8A8 exported & 11.733529 & 0.103223 & 0.125649 & -122.83 & INT8 weights, INT8 activations \\
-16x16 & W4 simulated & \secondbest{7.120090} & 0.168150 & 0.128364 & \secondbest{-35.22} & Simulated W4, stored as INT8 \\
-16x16 & W4A4 simulated & 11.773844 & 0.202582 & 0.086654 & -123.60 & Simulated W4A4, stored as INT8 \\
+16x16 & FP32 (Baseline) & \best{5.146062} & 0.012782 & 0.073337 & \best{0.00} & Custom FP32 \\
+16x16 & W8 exported & \secondbest{7.014362} & 0.083296 & 0.080277 & \secondbest{-36.31} & INT8 weights \\
+16x16 & W8A8 exported & 11.470190 & 0.147502 & 0.115758 & -122.89 & INT8 weights, INT8 activations \\
+16x16 & W4 simulated & 7.213576 & 0.211671 & 0.409897 & -40.18 & Simulated W4, stored as INT8 \\
+16x16 & W4A4 simulated & 11.524098 & 0.295468 & 0.261241 & -123.94 & Simulated W4A4, stored as INT8 \\
 \midrule
-32x32 & FP32 (Baseline) & \best{5.266173} & 0.032221 & 0.053805 & \best{0.00} & Custom FP32 \\
-32x32 & W8 exported & 7.933231 & 0.366455 & 0.467169 & -50.65 & INT8 weights \\
-32x32 & W8A8 exported & 12.195417 & 0.059917 & 0.090518 & -131.58 & INT8 weights, INT8 activations \\
-32x32 & W4 simulated & \secondbest{7.642602} & 0.234361 & 0.328855 & \secondbest{-45.13} & Simulated W4, stored as INT8 \\
-32x32 & W4A4 simulated & 12.297827 & 0.148067 & 0.096177 & -133.52 & Simulated W4A4, stored as INT8 \\
+32x32 & FP32 (Baseline) & \best{5.263652} & 0.028413 & 0.055663 & \best{0.00} & Custom FP32 \\
+32x32 & W8 exported & 7.996485 & 0.977758 & 1.334092 & -51.92 & INT8 weights \\
+32x32 & W8A8 exported & 12.047715 & 0.210418 & 0.442987 & -128.89 & INT8 weights, INT8 activations \\
+32x32 & W4 simulated & \secondbest{7.496125} & 0.043936 & 0.079481 & \secondbest{-42.41} & Simulated W4, stored as INT8 \\
+32x32 & W4A4 simulated & 11.888529 & 0.160986 & 0.143809 & -125.86 & Simulated W4A4, stored as INT8 \\
 \midrule
-64x64 & FP32 (Baseline) & \best{5.434947} & 0.064176 & 0.057511 & \best{0.00} & Custom FP32 \\
-64x64 & W8 exported & 9.368801 & 0.247711 & 0.536765 & -72.38 & INT8 weights \\
-64x64 & W8A8 exported & 13.951352 & 0.155624 & 0.102796 & -156.70 & INT8 weights, INT8 activations \\
-64x64 & W4 simulated & \secondbest{9.155039} & 0.289317 & 0.310954 & \secondbest{-68.45} & Simulated W4, stored as INT8 \\
-64x64 & W4A4 simulated & 13.803288 & 0.071927 & 0.113866 & -153.97 & Simulated W4A4, stored as INT8 \\
+64x64 & FP32 (Baseline) & \best{5.433384} & 0.139813 & 0.076996 & \best{0.00} & Custom FP32 \\
+64x64 & W8 exported & 9.300865 & 0.534876 & 0.081991 & -71.18 & INT8 weights \\
+64x64 & W8A8 exported & 14.258600 & 0.821211 & 0.329589 & -162.43 & INT8 weights, INT8 activations \\
+64x64 & W4 simulated & \secondbest{9.152335} & 0.283995 & 0.082902 & \secondbest{-68.45} & Simulated W4, stored as INT8 \\
+64x64 & W4A4 simulated & 14.435472 & 1.283723 & 0.518823 & -165.68 & Simulated W4A4, stored as INT8 \\
 \midrule
-128x128 & FP32 (Baseline) & \best{7.048160} & 0.073127 & 0.046204 & \best{0.00} & Custom FP32 \\
-128x128 & W8 exported & 16.008109 & 0.150453 & 0.384266 & -127.12 & INT8 weights \\
-128x128 & W8A8 exported & 22.047728 & 0.078107 & 0.137974 & -212.82 & INT8 weights, INT8 activations \\
-128x128 & W4 simulated & \secondbest{15.821126} & 0.136666 & 0.146854 & \secondbest{-124.47} & Simulated W4, stored as INT8 \\
-128x128 & W4A4 simulated & 22.085493 & 0.212822 & 0.163029 & -213.35 & Simulated W4A4, stored as INT8 \\
+128x128 & FP32 (Baseline) & \best{7.096793} & 0.227429 & 0.265162 & \best{0.00} & Custom FP32 \\
+128x128 & W8 exported & 16.559478 & 0.769237 & 0.718895 & -133.34 & INT8 weights \\
+128x128 & W8A8 exported & 21.856390 & 0.135632 & 0.181295 & -207.98 & INT8 weights, INT8 activations \\
+128x128 & W4 simulated & \secondbest{16.523698} & 0.505132 & 0.439443 & \secondbest{-132.83} & Simulated W4, stored as INT8 \\
+128x128 & W4A4 simulated & 22.494589 & 0.767611 & 0.481152 & -216.97 & Simulated W4A4, stored as INT8 \\
 \midrule
-256x256 & FP32 (Baseline) & \best{8.645236} & 0.055926 & 0.103969 & \best{0.00} & Custom FP32 \\
-256x256 & W8 exported & 38.625354 & 0.141650 & 0.228209 & -346.78 & INT8 weights \\
-256x256 & W8A8 exported & 44.200771 & 0.137596 & 0.385820 & -411.27 & INT8 weights, INT8 activations \\
-256x256 & W4 simulated & \secondbest{38.564348} & 0.202968 & 0.208180 & \secondbest{-346.08} & Simulated W4, stored as INT8 \\
-256x256 & W4A4 simulated & 44.313286 & 0.177997 & 0.233910 & -412.57 & Simulated W4A4, stored as INT8 \\
+256x256 & FP32 (Baseline) & \best{8.481060} & 0.031837 & 0.081578 & \best{0.00} & Custom FP32 \\
+256x256 & W8 exported & 38.626130 & 0.105376 & 0.104554 & -355.44 & INT8 weights \\
+256x256 & W8A8 exported & 43.981246 & 0.270989 & 0.209604 & -418.58 & INT8 weights, INT8 activations \\
+256x256 & W4 simulated & \secondbest{38.524395} & 0.241568 & 0.083804 & \secondbest{-354.24} & Simulated W4, stored as INT8 \\
+256x256 & W4A4 simulated & 44.478662 & 1.177463 & 1.895246 & -424.45 & Simulated W4A4, stored as INT8 \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}

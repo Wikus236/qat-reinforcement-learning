@@ -1,3 +1,7 @@
+from LunarLander.training.settings import selected_training_config
+from LunarLander.training.settings import (
+    EXPLORATION_DECAY_STEPS, ADDITIONAL_EXPLORATION_INITIAL_EPS,
+)
 from LunarLander.paths import APP_ROOT
 import gymnasium as gym
 from pathlib import Path
@@ -76,9 +80,11 @@ def format_time(seconds):
 
 if __name__ == "__main__":
 
-    for size in MODEL_SIZES:
+    selection = selected_training_config(MODEL_SIZES, SEEDS)
 
-        for seed in SEEDS:
+    for size in selection.sizes:
+
+        for seed in selection.seeds:
 
             load_path = Path(
                 f"{APP_ROOT}/models/initial_fp32/"
@@ -172,7 +178,9 @@ if __name__ == "__main__":
                 train_freq=4,
                 gradient_steps=1,
                 target_update_interval=2_000,
-                exploration_fraction=0.05,
+                exploration_fraction=1.0,
+                exploration_decay_steps=EXPLORATION_DECAY_STEPS,
+                exploration_initial_eps=ADDITIONAL_EXPLORATION_INITIAL_EPS,
                 exploration_final_eps=0.01,
                 seed=seed,
                 verbose=1,
@@ -194,6 +202,7 @@ if __name__ == "__main__":
                 // block_size
             )
 
+            print(f"Exploration decay: {EXPLORATION_DECAY_STEPS:,} steps")
             start_time = time.time()
 
             print()

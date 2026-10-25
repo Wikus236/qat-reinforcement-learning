@@ -1,5 +1,6 @@
 """Train W8-only LunarLander QAT from random weights using base.py's protocol."""
 
+from LunarLander.training.settings import EXPLORATION_DECAY_STEPS
 from LunarLander.paths import APP_ROOT
 
 import argparse
@@ -25,14 +26,15 @@ MODEL_TYPE = "weight_qat_scratch"
 
 def train_one(size, seed, output_dir, total_steps=TOTAL_STEPS,
               block_size=BLOCK_SIZE, overwrite=False):
-    """Match initial FP32 training, including blockwise learn/exploration behavior."""
+    """Match initial FP32 training with a fixed exploration horizon."""
     save_path = output_dir / f"qat_dqn_lander_{size}_{size}_seed_{seed}"
     curve_path = output_dir / "training_curves" / f"{MODEL_TYPE}_{size}_{size}_seed_{seed}.csv"
     checkpoint_dir = output_dir / "checkpoints" / f"{size}_{size}_seed_{seed}"
     manifest_path = output_dir / "runs" / f"{size}_{size}_seed_{seed}.json"
     int_path = Path(f"{save_path}_int8_weights.pt")
     config = dict(model_type=MODEL_TYPE, size=size, seed=seed,
-                  total_steps=total_steps, block_size=block_size, from_scratch=True)
+                  total_steps=total_steps, block_size=block_size, from_scratch=True,
+                  exploration_decay_steps=EXPLORATION_DECAY_STEPS)
     if manifest_path.exists() and not overwrite:
         saved = json.loads(manifest_path.read_text())
         if (all(saved.get(key) == value for key, value in config.items())
@@ -64,6 +66,7 @@ def train_one(size, seed, output_dir, total_steps=TOTAL_STEPS,
             learning_rate=1e-4, buffer_size=100_000, learning_starts=10_000,
             batch_size=64, gamma=0.99, train_freq=4, gradient_steps=1,
             target_update_interval=1_000, exploration_fraction=0.2,
+            exploration_decay_steps=EXPLORATION_DECAY_STEPS,
             exploration_final_eps=0.05, seed=seed, verbose=1,
         )
         # No checkpoint or pretrained FP32 weights are loaded.
@@ -80,8 +83,7 @@ def train_one(size, seed, output_dir, total_steps=TOTAL_STEPS,
             model.save(save_path)
             model.save_int8_weights(int_path)
             for block in range(1, total_steps // block_size + 1):
-                # Deliberately use the same block calls as base.py. Changing the
-                # exploration horizon here would change the original experiment.
+                # Evaluation blocks do not alter the fixed exploration horizon.
                 model.learn(total_timesteps=block_size, log_interval=1,
                             reset_num_timesteps=False)
                 mean, std = evaluate_fixed_seeds(model, env, EVAL_SEEDS)
